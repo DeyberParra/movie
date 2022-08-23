@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.deyber.movie.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_dashFragment"
+            app:destination="@id/dashFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashFragment"
+        android:name="com.deyber.movie.ui.dash.DashFragment"
+        android:label="fragment_dash"
+        tools:layout="@layout/fragment_dash" />
+</navigation>
