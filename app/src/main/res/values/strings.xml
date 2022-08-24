@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">movie</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="clickme">Clikme</string>
+    <string name="fragmentUser_name">Name</string>
+    <string name="fragmentUser_username">Username</string>
+    <string name="fragmentUser_welcome">Welcome</string>
 </resources>
