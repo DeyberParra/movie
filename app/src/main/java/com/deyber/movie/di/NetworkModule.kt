@@ -19,7 +19,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-
     @Singleton
     @Provides
     fun provideClient(retrofit:Retrofit):MovieClient = retrofit.create(MovieClient::class.java)

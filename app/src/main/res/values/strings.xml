@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">movie</string>
+    <string name="app_name">Movie</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="fragmentUser_name">Name</string>
-    <string name="fragmentUser_username">Username</string>
-    <string name="fragmentUser_welcome">Welcome</string>
+
+    <string name="menu_user">Profile</string>
+    <string name="menu_movie">Cinema</string>
+    <string name="menu_maps">Maps</string>
+    <string name="menu_images">Images</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

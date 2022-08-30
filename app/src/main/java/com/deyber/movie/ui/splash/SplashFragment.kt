@@ -1,6 +1,8 @@
 package com.deyber.movie.ui.splash
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,7 +36,6 @@ class SplashFragment : Fragment() {
 
         binding = FragmentSplashBinding.inflate(layoutInflater)
         return binding.root
-        //return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
 
@@ -47,21 +48,26 @@ class SplashFragment : Fragment() {
         splasViewModel.getSession().observe(viewLifecycleOwner, Observer {
 
             it.doLoading {
-                Log.i("Mensaje","Estamos cargando los datos")
+                binding.progressBar.visibility = View.VISIBLE
+
             }
 
             it.doSuccess {
                 Log.i("Mensaje"," solicitud success la session es : ${it.session_id}" )
+                binding.progressBar.visibility= View.GONE
                 findNavController().navigate(R.id.dashFragment)
+
             }
 
             it.doFailure { mensaje, throwable ->
                 Log.i("Mensaje", mensaje?:"Mensaje no identificado")
+                binding.progressBar.visibility= View.GONE
             }
 
         })
 
     }
+
 
     override fun onResume() {
         super.onResume()
