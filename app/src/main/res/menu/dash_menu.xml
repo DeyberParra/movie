@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/ic_me"
+        android:title="@string/menu_user"
+        />
+
+    <item
+        android:id="@+id/menu_cinema"
+        android:icon="@drawable/ic_cienema"
+        android:title="@string/menu_movie"
+        />
+
+    <item
+        android:id="@+id/menu_maps"
+        android:icon="@drawable/ic_map"
+        android:title="@string/menu_maps"
+        />
+
+    <item
+        android:id="@+id/menu_image"
+        android:icon="@drawable/ic_image"
+        android:title="@string/menu_images"
+        />
+
+</menu>
