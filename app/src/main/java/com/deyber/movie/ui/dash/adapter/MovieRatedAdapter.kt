@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.deyber.movie.R
 import com.deyber.movie._utils.BaseViewHolder
 import com.deyber.movie._utils.constants.RetrofitConstants
-import com.deyber.movie.data.model.ResultsMovieRated
+import com.deyber.movie.data.room.ResultsMovieRated
 
 class MovieRatedAdapter():RecyclerView.Adapter<MovieRatedAdapter.RatedHolder>() {
 

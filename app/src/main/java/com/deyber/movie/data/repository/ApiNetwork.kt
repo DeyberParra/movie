@@ -1,8 +1,8 @@
 package com.deyber.movie.data.repository
 
 
-import com.deyber.movie.data.model.UserMovieRated
-import com.deyber.movie.data.model.netmork.User
+import com.deyber.movie.data.room.UserMovieRated
+import com.deyber.movie.data.room.netmork.User
 import com.deyber.movie.data.network.MovieClient
 import com.deyber.movie.data.network.request.LogRequest
 import com.deyber.movie.data.network.response.SessionResponse

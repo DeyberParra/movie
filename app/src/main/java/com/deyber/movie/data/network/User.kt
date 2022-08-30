@@ -1,4 +1,4 @@
-package com.deyber.movie.data.model.netmork
+package com.deyber.movie.data.room.netmork
 
 import com.google.gson.annotations.SerializedName
 

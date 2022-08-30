@@ -1,4 +1,4 @@
-package com.deyber.movie.data.model
+package com.deyber.movie.data.room
 
 import com.google.gson.annotations.SerializedName
 
