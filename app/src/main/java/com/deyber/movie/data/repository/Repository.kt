@@ -1,14 +1,22 @@
 package com.deyber.movie.data.repository
 
-import com.deyber.movie.data.room.UserMovieRated
-import com.deyber.movie.data.room.netmork.User
+import androidx.room.withTransaction
+import com.deyber.movie.core.networkBoundResource
+import com.deyber.movie.data.network.model.UserMovieRatedModel
 import com.deyber.movie.data.network.request.LogRequest
 import com.deyber.movie.data.network.response.SessionResponse
 import com.deyber.movie.data.network.response.TokenBody
 import com.deyber.movie.data.network.response.TokenResponse
+import com.deyber.movie.data.room.MovieDataBase
+import com.deyber.movie.data.room.model.dao.UserDao
+import com.deyber.movie.domain.model.User
+import com.deyber.movie.domain.model.mapper.toDataBase
+import com.deyber.movie.domain.model.mapper.toDomain
 import javax.inject.Inject
 
-class Repository @Inject constructor(private val api:ApiNetwork):SessionSource, DataSource {
+class Repository @Inject constructor(
+    private val api:ApiNetwork, private val userDao: UserDao, private val db: MovieDataBase
+):SessionSource{
 
 
     override suspend fun getToken(): TokenResponse? {
@@ -23,11 +31,32 @@ class Repository @Inject constructor(private val api:ApiNetwork):SessionSource, 
        return api.getSession(token)
     }
 
-    override suspend fun getUser(): User? {
-        return api.getUser()
-    }
+    fun getUser()= networkBoundResource(
+        query = {userDao.getUser()},
+        fetch = {
+            api.getUser()},
+        saveFetchResult = {
+            db.withTransaction {
+                if(it!=null){
+                    val a = it.toDomain()
+                    val b = a.toDataBase()
+                    userDao.deleteAllUser()
+                    userDao.newUser(b)
+                }
 
-    override suspend fun getUserRated(): UserMovieRated? {
-        return api.getUserRated()
-    }
+            }
+        },
+    )
+
+    fun getUserMovieRated() =networkBoundResource(
+        query = {userDao.getUserMovieRated()},
+        fetch={api.getUserRated()},
+        saveFetchResult = {
+                if(it!=null){
+                    val a = it.toDomain()
+                    val b = a.toDataBase()
+                    userDao.deleteAllUserMovieRated()
+                    userDao.saveUserMoviesRated(b)
+                }
+            })
 }

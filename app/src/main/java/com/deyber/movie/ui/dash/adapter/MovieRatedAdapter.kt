@@ -7,11 +7,11 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.deyber.movie.R
 import com.deyber.movie._utils.BaseViewHolder
 import com.deyber.movie._utils.constants.RetrofitConstants
-import com.deyber.movie.data.room.ResultsMovieRated
+import com.deyber.movie._utils.extensions.typePoster
+import com.deyber.movie.domain.model.ResultsMovieRated
 
 class MovieRatedAdapter():RecyclerView.Adapter<MovieRatedAdapter.RatedHolder>() {
 
@@ -46,14 +46,13 @@ class MovieRatedAdapter():RecyclerView.Adapter<MovieRatedAdapter.RatedHolder>() 
              img = itemView.findViewById(R.id.movie_poster)
          }
 
-         override fun bind(item:ResultsMovieRated, position: Int ){
+         override fun bind(item: ResultsMovieRated, position: Int ){
              title.text = item.title.toString()
              rated.apply {
                  rating =  (item.rating?.toFloat() ?: 0f)/2
              }
-             Glide.with(itemView)
-                 .load(RetrofitConstants.urlThumb+item.posterPath)
-                 .centerCrop().into(img)
+             img.typePoster(RetrofitConstants.urlThumb+item.posterPath)
+
          }
      }
 }

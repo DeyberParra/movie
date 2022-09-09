@@ -1,24 +1,25 @@
 package com.deyber.movie.domain
 
-import com.deyber.movie.data.room.UserMovieRated
-import com.deyber.movie.data.room.netmork.User
+import com.deyber.movie.core.Resouce.Resource
 import com.deyber.movie.data.network.request.LogRequest
 import com.deyber.movie.data.network.response.SessionResponse
 import com.deyber.movie.data.network.response.TokenBody
 import com.deyber.movie.data.network.response.TokenResponse
-import com.deyber.movie.data.repository.DataSource
 import com.deyber.movie.data.repository.Repository
 import com.deyber.movie.data.repository.SessionSource
+import com.deyber.movie.data.room.model.UserEntity
+import com.deyber.movie.data.room.model.UserMovieRatedEntity
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class DataNetworkUseCase @Inject constructor(private val repository: Repository): SessionSource,
-    DataSource {
-    override suspend fun getUser(): User? {
+class MovieUseCase @Inject constructor(private val repository: Repository): SessionSource{
+
+    fun getUser(): Flow<Resource<UserEntity>> {
         return repository.getUser()
     }
 
-    override suspend fun getUserRated(): UserMovieRated? {
-        return repository.getUserRated()
+    fun getUserRated(): Flow<Resource<List<UserMovieRatedEntity>>> {
+        return repository.getUserMovieRated()
     }
 
     override suspend fun getToken(): TokenResponse? {

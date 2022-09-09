@@ -20,5 +20,14 @@
         android:id="@+id/dashFragment"
         android:name="com.deyber.movie.ui.dash.DashFragment"
         android:label="fragment_dash"
-        tools:layout="@layout/fragment_dash" />
+        tools:layout="@layout/fragment_dash" >
+        <action
+            android:id="@+id/action_dashFragment_to_noDataFragment"
+            app:destination="@id/noDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noDataFragment"
+        android:name="com.deyber.movie.ui.NoDataFragment"
+        android:label="fragment_no_data"
+        tools:layout="@layout/fragment_no_data" />
 </navigation>
