@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.appcompat.app.AppCompatActivity
 import com.deyber.movie.R
 import com.deyber.movie.databinding.FragmentDashBinding
 import com.deyber.movie.ui.dash.fragments.CinemaFragment
@@ -53,23 +52,12 @@ class DashFragment : Fragment() {
         }
 
     }
-    override fun onResume() {
-        super.onResume()
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
-    }
     
     private fun configs(savedInstanceState:Bundle?){
-
         if(savedInstanceState==null){
             navigateFragment(ProfileFragment())
 
         }
-        // evitamos que regrese al splash
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
     }
 

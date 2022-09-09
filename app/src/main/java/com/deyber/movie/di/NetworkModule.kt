@@ -1,9 +1,11 @@
 package com.deyber.movie.di
 import android.content.Context
+import android.net.ConnectivityManager
 import com.deyber.movie._utils.constants.RetrofitConstants
-import com.deyber.movie.core.sesion.SessionInterceptor
+import com.deyber.movie.core.interceptor.InternetInterceptor
+import com.deyber.movie.core.interceptor.SessionInterceptor
 import com.deyber.movie.core.sesion.SessionManager
-import com.deyber.movie.data.network.MovieClient
+import com.deyber.movie.data.network.model.MovieClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +23,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideClient(retrofit:Retrofit):MovieClient = retrofit.create(MovieClient::class.java)
+    fun provideClient(retrofit:Retrofit): MovieClient = retrofit.create(MovieClient::class.java)
 
     @Singleton
     @Provides
@@ -35,9 +37,13 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(sessionInterceptor: SessionInterceptor):OkHttpClient{
-        return OkHttpClient.Builder().addInterceptor(sessionInterceptor).build()
+    fun provideOkHttpClient(sessionInterceptor: SessionInterceptor, internetInterceptor: InternetInterceptor):OkHttpClient{
+        return OkHttpClient.Builder().addInterceptor(internetInterceptor).addInterceptor(sessionInterceptor).build()
     }
+
+    @Singleton
+    @Provides
+    fun provideInternetInterceptor(@ApplicationContext context:Context) = InternetInterceptor(context)
 
     @Singleton
     @Provides

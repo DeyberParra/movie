@@ -1,6 +1,4 @@
-package com.deyber.movie.data.network
-import com.deyber.movie.data.room.UserMovieRated
-import com.deyber.movie.data.room.netmork.User
+package com.deyber.movie.data.network.model
 import com.deyber.movie.data.network.request.LogRequest
 import com.deyber.movie.data.network.response.SessionResponse
 import com.deyber.movie.data.network.response.TokenBody
@@ -24,9 +22,9 @@ interface  MovieClient {
     ):Response<SessionResponse>
 
     @GET("account")
-    suspend fun getUser():Response<User>
+    suspend fun getUser():Response<UserModel>
 
     @GET("account/{account_id}/rated/movies")
-    suspend fun getrUserRated():Response<UserMovieRated>
+    suspend fun getrUserRated():Response<UserMovieRatedModel>
 
 }

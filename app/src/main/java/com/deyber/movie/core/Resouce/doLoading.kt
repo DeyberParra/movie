@@ -12,9 +12,9 @@ inline fun <reified T> Resource<T>.doSuccess(callback:(data:T)->Unit){
     }
 }
 
-inline fun <reified T> Resource<T>.doFailure(callback: (error:String?, throwable:Throwable?) -> Unit){
+inline fun <reified T> Resource<T>.doFailure(callback: (error:String?, throwable:Throwable?,typeError:TYPEERROR?) -> Unit){
     if(this is Resource.Failure){
-        callback(message,throwable)
+        callback(message,throwable,typeError)
     }
 }
 

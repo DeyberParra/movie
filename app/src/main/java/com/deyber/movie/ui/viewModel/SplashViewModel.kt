@@ -5,17 +5,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.deyber.movie._utils.constants.RetrofitConstants
 import com.deyber.movie.core.Resouce.Resource
+import com.deyber.movie.core.Resouce.TYPEERROR
 import com.deyber.movie.core.sesion.SessionManager
 import com.deyber.movie.data.network.request.LogRequest
 import com.deyber.movie.data.network.response.SessionResponse
 import com.deyber.movie.data.network.response.TokenBody
 import com.deyber.movie.data.repository.Repository
+import com.deyber.movie.domain.MovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashViewModel @Inject constructor(private val repository: Repository, private val sessionManager: SessionManager): ViewModel() {
+class SplashViewModel @Inject constructor(private val movieUseCase: MovieUseCase, private val sessionManager: SessionManager): ViewModel() {
 
     private val response = MutableLiveData<Resource<SessionResponse>>()
 
@@ -35,34 +37,34 @@ class SplashViewModel @Inject constructor(private val repository: Repository, pr
     fun createSession(){
         viewModelScope.launch {
             try{
-                val token = repository.getToken()
+                val token = movieUseCase.getToken()
                 if(token!=null){
                     try{
-                        val validaToken = repository.validateToken(LogRequest(RetrofitConstants.user, RetrofitConstants.pass, token.token))
+                        val validaToken = movieUseCase.validateToken(LogRequest(RetrofitConstants.user, RetrofitConstants.pass, token.token))
                         if(validaToken!=null){
                             try{
-                                val session:SessionResponse? = repository.getSession(TokenBody(validaToken.token))
+                                val session:SessionResponse? = movieUseCase.getSession(TokenBody(validaToken.token))
                                 if(session!=null){
                                     sessionManager.saveSession(session)
                                     response.postValue(Resource.Success(session))
                                 }else{
-                                    response.postValue(Resource.Failure("Error: Session nulo", null))
+                                    response.postValue(Resource.Failure("Error: Session nulo", null, TYPEERROR.NO_DATA))
                                 }
                             }catch (io:Exception){
-                                response.postValue(Resource.Failure("Error: Solicitud Session",io))
+                                response.postValue(Resource.Failure("Error: Solicitud Session",io, TYPEERROR.ERROR_REQUEST))
                             }
                         }else{
-                            response.postValue(Resource.Failure("Error: Token no validado", null))
+                            response.postValue(Resource.Failure("Error: Token no validado", null, TYPEERROR.ERROR_REQUEST))
                         }
                     }catch (io:Exception){
-                        response.postValue(Resource.Failure("Error: Solicitud de  validacion token", io))
+                        response.postValue(Resource.Failure("Error: Solicitud de  validacion token", io, TYPEERROR.ERROR_REQUEST))
                     }
                 }else{
-                    response.postValue(Resource.Failure("Error: Token nulo", null))
+                    response.postValue(Resource.Failure("Error: Token nulo", null, TYPEERROR.NO_DATA))
                 }
 
             }catch (io:Exception){
-                response.postValue(Resource.Failure("Error: Solcitud Token",io))
+                response.postValue(Resource.Failure("Error: Solcitud Token",io, TYPEERROR.ERROR_REQUEST))
             }
         }
     }
