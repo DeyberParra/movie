@@ -21,14 +21,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //setContentView(R.layout.activity_main)
-        settingNavController()
+        //settingNavController()
 
     }
 
+    //code that active ActionBar
     fun settingNavController(){
        navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this,navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

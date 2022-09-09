@@ -1,4 +1,4 @@
-package com.deyber.movie.data.network
+package com.deyber.movie.data.network.model
 
 import com.google.gson.annotations.SerializedName
 

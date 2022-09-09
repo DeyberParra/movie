@@ -1,13 +1,13 @@
-package com.deyber.movie.data.room
+package com.deyber.movie.data.network.model
 
 import com.google.gson.annotations.SerializedName
 
 
-data class UserMovieRated(
-    @SerializedName("results"       ) var results      : List<ResultsMovieRated> = listOf(),
+data class UserMovieRatedModel(
+    @SerializedName("results"       ) var results      : List<ResultsMovieRatedModel> = listOf(),
     @SerializedName("total_results" ) var totalResults : Int?               = null
 )
-data class ResultsMovieRated (
+data class ResultsMovieRatedModel (
     @SerializedName("id"                ) var id               : Int?           = null,
     @SerializedName("original_language" ) var originalLanguage : String?        = null,
     @SerializedName("poster_path"       ) var posterPath       : String?        = null,

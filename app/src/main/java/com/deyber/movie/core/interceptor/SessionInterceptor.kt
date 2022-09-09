@@ -1,6 +1,7 @@
-package com.deyber.movie.core.sesion
+package com.deyber.movie.core.interceptor
 
 import com.deyber.movie._utils.constants.RetrofitConstants
+import com.deyber.movie.core.sesion.SessionManager
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject

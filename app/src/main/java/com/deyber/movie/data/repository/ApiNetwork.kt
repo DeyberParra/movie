@@ -1,9 +1,9 @@
 package com.deyber.movie.data.repository
 
 
-import com.deyber.movie.data.room.UserMovieRated
-import com.deyber.movie.data.room.netmork.User
-import com.deyber.movie.data.network.MovieClient
+import com.deyber.movie.data.network.model.MovieClient
+import com.deyber.movie.data.network.model.UserModel
+import com.deyber.movie.data.network.model.UserMovieRatedModel
 import com.deyber.movie.data.network.request.LogRequest
 import com.deyber.movie.data.network.response.SessionResponse
 import com.deyber.movie.data.network.response.TokenBody
@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ApiNetwork @Inject constructor(private val api:MovieClient):SessionSource, DataSource{
+class ApiNetwork @Inject constructor(private val api: MovieClient):SessionSource, NetworkDataSource{
 
     override suspend fun getToken():TokenResponse?{
 
@@ -36,13 +36,13 @@ class ApiNetwork @Inject constructor(private val api:MovieClient):SessionSource,
         }
     }
 
-    override suspend fun getUser(): User? {
+    override suspend fun getUser(): UserModel? {
        return withContext(Dispatchers.IO){
            api.getUser().body()
        }
     }
 
-    override suspend fun getUserRated(): UserMovieRated? {
+    override suspend fun getUserRated(): UserMovieRatedModel? {
         return withContext(Dispatchers.IO){
             api.getrUserRated().body()
         }
