@@ -18,7 +18,7 @@ import com.deyber.movie.core.Resouce.doLoading
 import com.deyber.movie.core.Resouce.doSuccess
 import com.deyber.movie.databinding.FragmentProfileBinding
 import com.deyber.movie.domain.model.mapper.toDomain
-import com.deyber.movie.ui.dash.adapter.MovieRatedAdapter
+import com.deyber.movie.ui.dash.adapter.MovieUserAdapter
 import com.deyber.movie.ui.viewModel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by viewModels()
 
     private lateinit var recycler: RecyclerView
-    private lateinit var adapter: MovieRatedAdapter
+    private lateinit var adapter: MovieUserAdapter
 
 
     override fun onCreateView(
@@ -44,7 +44,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MovieRatedAdapter()
+        adapter = MovieUserAdapter()
         recycler = binding.movieRatedRecycler
         recycler.adapter = adapter
         recycler.layoutManager = GridLayoutManager(activity,2)

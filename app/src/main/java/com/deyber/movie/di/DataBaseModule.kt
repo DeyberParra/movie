@@ -3,6 +3,7 @@ package com.deyber.movie.di
 import android.content.Context
 import androidx.room.Room
 import com.deyber.movie.data.room.MovieDataBase
+import com.deyber.movie.data.room.model.dao.MovieDao
 import com.deyber.movie.data.room.model.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,12 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun provideMovieDao(db:MovieDataBase):UserDao = db.MovieDao()
+    fun provideUserDao(db:MovieDataBase):UserDao = db.UserDao()
+
+    @Singleton
+    @Provides
+    fun provideMovieDao(db:MovieDataBase): MovieDao = db.MovieDao()
+
+
 
 }

@@ -98,7 +98,8 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 
     //lotie
-
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    //viewPadger
+    implementation "androidx.viewpager:viewpager:1.1.0-alpha01"
 
 }

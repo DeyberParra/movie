@@ -7,18 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import com.deyber.movie.R
-import com.deyber.movie.core.Resouce.TYPEERROR
 import com.deyber.movie.core.Resouce.doFailure
 import com.deyber.movie.core.Resouce.doLoading
 import com.deyber.movie.core.Resouce.doSuccess
 import com.deyber.movie.databinding.FragmentCinemaBinding
-import com.deyber.movie.domain.model.User
-import com.deyber.movie.domain.model.UserAvatar
-import com.deyber.movie.domain.model.UserTmb
-import com.deyber.movie.domain.model.mapper.toDomain
+import com.deyber.movie.ui.dash.adapter.pagerAdapter.MoviePagerAdapter
 import com.deyber.movie.ui.viewModel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +33,10 @@ class CinemaFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter:MoviePagerAdapter = MoviePagerAdapter(childFragmentManager)
+        binding.moviePager.adapter = adapter
+
+        binding.tabCinema.setupWithViewPager(binding.moviePager)
     }
 
 }

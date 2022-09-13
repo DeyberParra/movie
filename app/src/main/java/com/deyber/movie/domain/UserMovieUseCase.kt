@@ -12,7 +12,7 @@ import com.deyber.movie.data.room.model.UserMovieRatedEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class MovieUseCase @Inject constructor(private val repository: Repository): SessionSource{
+class UserMovieUseCase @Inject constructor(private val repository: Repository): SessionSource{
 
     fun getUser(): Flow<Resource<UserEntity>> {
         return repository.getUser()

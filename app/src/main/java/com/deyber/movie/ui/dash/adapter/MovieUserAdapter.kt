@@ -13,7 +13,7 @@ import com.deyber.movie._utils.constants.RetrofitConstants
 import com.deyber.movie._utils.extensions.typePoster
 import com.deyber.movie.domain.model.ResultsMovieRated
 
-class MovieRatedAdapter():RecyclerView.Adapter<MovieRatedAdapter.RatedHolder>() {
+class MovieUserAdapter():RecyclerView.Adapter<MovieUserAdapter.RatedHolder>() {
 
     private var movieRated: List<ResultsMovieRated> = listOf<ResultsMovieRated>()
 

@@ -27,4 +27,14 @@ interface  MovieClient {
     @GET("account/{account_id}/rated/movies")
     suspend fun getrUserRated():Response<UserMovieRatedModel>
 
+    @GET("movie/popular")
+    suspend fun getPopularMovies():Response<MovieModel>
+
+    @GET("movie/top_rated")
+    suspend fun getTopRatedMovies():Response<MovieModel>
+
+    @GET("movie/upcoming")
+    suspend fun getUpComingMovies():Response<MovieModel>
+
+
 }
