@@ -15,14 +15,12 @@ inline fun <ResultType, RequestType> networkBoundResource(
      val flow = if (shouldFetch(data))
          {
             emit(Resource.Loading())
-
             try {
                 saveFetchResult(fetch())
                 query().map {
                     Resource.Success(it)
                 }
             } catch (throwable: Throwable) {
-
                 query().map {
                     if(it!=null){
                         Resource.Success(it)

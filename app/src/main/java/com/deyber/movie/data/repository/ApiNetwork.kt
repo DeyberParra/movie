@@ -2,6 +2,7 @@ package com.deyber.movie.data.repository
 
 
 import com.deyber.movie.data.network.model.MovieClient
+import com.deyber.movie.data.network.model.MovieModel
 import com.deyber.movie.data.network.model.UserModel
 import com.deyber.movie.data.network.model.UserMovieRatedModel
 import com.deyber.movie.data.network.request.LogRequest
@@ -47,5 +48,24 @@ class ApiNetwork @Inject constructor(private val api: MovieClient):SessionSource
             api.getrUserRated().body()
         }
     }
+
+    override suspend fun getPopularMovie(): MovieModel? {
+        return withContext(Dispatchers.IO){
+            api.getPopularMovies().body()
+        }
+    }
+
+    override suspend fun getTopRatedMovie(): MovieModel? {
+        return withContext(Dispatchers.IO){
+            api.getTopRatedMovies().body()
+        }
+    }
+
+    override suspend fun getUpComingMovie(): MovieModel? {
+        return withContext(Dispatchers.IO) {
+            api.getUpComingMovies().body()
+        }
+    }
+
 
 }
