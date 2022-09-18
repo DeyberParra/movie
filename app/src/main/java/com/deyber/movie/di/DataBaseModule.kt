@@ -5,6 +5,10 @@ import androidx.room.Room
 import com.deyber.movie.data.room.MovieDataBase
 import com.deyber.movie.data.room.model.dao.MovieDao
 import com.deyber.movie.data.room.model.dao.UserDao
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +36,10 @@ object DataBaseModule {
     @Provides
     fun provideMovieDao(db:MovieDataBase): MovieDao = db.MovieDao()
 
+
+    @Singleton
+    @Provides
+    fun provideFireBase():FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
 }

@@ -4,6 +4,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+
 }
 
 android {
@@ -81,6 +83,8 @@ dependencies {
 
     //corutinas
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$corrutinas_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1" //corrutines for google play services
+
 
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -101,5 +105,17 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
     //viewPadger
     implementation "androidx.viewpager:viewpager:1.1.0-alpha01"
+
+    //firebase dependencies
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    //google play services
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
+
+    //easy permission
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    implementation "com.google.android.gms:play-services-maps:18.1.0"
 
 }

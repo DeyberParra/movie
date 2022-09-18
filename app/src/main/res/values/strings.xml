@@ -12,4 +12,6 @@
     <string name="no_signal_title">Data no found</string>
     <string name="no_signal_content">Retry later</string>
 
+    <string name="location_permission_message">You need to accept permission to use app </string>
+
 </resources>
