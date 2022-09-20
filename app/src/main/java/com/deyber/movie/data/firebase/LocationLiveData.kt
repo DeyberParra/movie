@@ -18,8 +18,8 @@ class LocationLiveData @Inject constructor(val context: Context): LiveData<Locat
 
     companion object{
         val locationRequest = LocationRequest.create().apply {
-            interval=10000
-            fastestInterval=10000
+            interval=300000
+            fastestInterval=300000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         }
